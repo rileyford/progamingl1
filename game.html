@@ -19,12 +19,19 @@
         var pXpos = 0;
         var pYpos = 0;
         const P_SIZE=50;
+        var pXspeed = 5; 
          
         
         function mainloop(){
              colorRect(0,0,canvas.width,canvas.height, 'black');
              colorRect(pXpos,pYpos,P_SIZE,P_SIZE,'red');
+            
+            playerMove();
          }
+        
+        function playerMove(){
+            pXpos += pXspeed;
+        }
         
         // func to draw colored rects on canvas
         function colorRect(x, y, w, h, c) {
