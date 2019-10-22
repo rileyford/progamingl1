@@ -13,30 +13,108 @@
         window.onload = function() {
             canvas = document.getElementById('gameCanvas');
             canvasContext = canvas.getContext('2d');
+
+            document.addEventListener('keydown', keyPressed); //keyPressed = made function 
+            document.addEventListener('keyup', keyReleased); //keyReleased = made function 
             setInterval(mainloop, 1000 / 50);
-        } 
+        }
 
         var pXpos = 0;
         var pYpos = 0;
-        const P_SIZE=50;
-        var pXspeed = 5; 
-         
+        const P_SIZE = 50;
+        var pXspeed = 5;
+        var pYspeed = 5;
+
+        const LEFT_KEY = 37;
+        const UP_KEY = 38;
+        const RIGHT_KEY = 39;
+        const DOWN_KEY = 40;
+
+        var leftKeyPressed = false;
+        var upkeyPressed = false;
+        var rightKeyPressed = false;
+        var downKeyPressed = false;
         
-        function mainloop(){
-             colorRect(0,0,canvas.width,canvas.height, 'black');
-             colorRect(pXpos,pYpos,P_SIZE,P_SIZE,'red');
+        var eXpos = 0;
+        var eYpos = 0;
+        const E_SIZE = 50;
+        var eXspeed = 5;
+        var eYspeed = 5;
+
+
+        function mainloop() {
+            colorRect(0, 0, canvas.width, canvas.height, 'black');
+            colorRect(pXpos, pYpos, P_SIZE, P_SIZE, 'blue'); // player 
+            colorRect(eXpos, eYpos, E_SIZE, E_SIZE, 'red'); // enemy 
+           
             
             playerMove();
-         }
-        
-        function playerMove(){
-            pXpos += pXspeed;
         }
-        
+
+        function keyPressed(evt) {
+            if (evt.keyCode == LEFT_KEY) { // 37 should be a const
+                leftKeyPressed = true; // opposite should be done for keyRelease function
+            }
+            if (evt.keyCode == UP_KEY) { // 37 should be a const
+                upkeyPressed = true; // opposite should be done for keyRelease function
+            }
+            if (evt.keyCode == RIGHT_KEY) { // 37 should be a const
+                rightKeyPressed = true; // opposite should be done for keyRelease function
+            }
+            if (evt.keyCode == DOWN_KEY) { // 37 should be a const
+                downKeyPressed = true; // opposite should be done for keyRelease function
+            }
+        }
+
+        function keyReleased(evt) {
+            if (evt.keyCode == LEFT_KEY) { // 37 should be a const   
+                leftKeyPressed = false; // opposite should be done for keyRelease function  
+            }
+            if (evt.keyCode == UP_KEY) { // 37 should be a const
+                upkeyPressed = false; // opposite should be done for keyRelease function
+            }
+            if (evt.keyCode == RIGHT_KEY) { // 37 should be a const
+                rightKeyPressed = false; // opposite should be done for keyRelease function
+            }
+            if (evt.keyCode == DOWN_KEY) { // 37 should be a const
+                downKeyPressed = false; // opposite should be done for keyRelease function
+            }
+
+        }
+
+        function makeEnemies() {
+            const enemySize = 20;
+            var enemyYpos = 0 - ENEMY_SIZE;
+            var enemyYspeed = Math.floor(math.random() * 12 - 3 + 3);
+            var enemyPosOptions = math.floor(math.random() * 3) + 1;
+
+        }
+
+
+
+
+
         // func to draw colored rects on canvas
         function colorRect(x, y, w, h, c) {
             canvasContext.fillStyle = c;
             canvasContext.fillRect(x, y, w, h);
+        }
+
+        function playerMove() {
+            if (leftKeyPressed) {
+                pXpos -= pXspeed;
+            }
+            if (upkeyPressed) {
+                pYpos -= pYspeed;
+            }
+            if (rightKeyPressed) {
+                pXpos += pXspeed;
+            }
+            if (downKeyPressed) {
+                pYpos += pYspeed;
+            }
+
+
         }
 
     </script>
