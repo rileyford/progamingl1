@@ -41,14 +41,28 @@
         var eXspeed = 5;
         var eYspeed = 5;
 
+        var startingPos = true;
+        
 
         function mainloop() {
             colorRect(0, 0, canvas.width, canvas.height, 'black');
+            
+            if(startingPos){
+               startPos();
+                startingPos = false;
+            }
+            
             colorRect(pXpos, pYpos, P_SIZE, P_SIZE, 'blue'); // player 
             colorRect(eXpos, eYpos, E_SIZE, E_SIZE, 'red'); // enemy 
            
             
+            
             playerMove();
+        }
+        
+        function startPos(){
+            pXpos = canvas.width / 2 - P_SIZE / 2;
+            pYpos = canvas.height - P_SIZE;
         }
 
         function keyPressed(evt) {
