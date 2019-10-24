@@ -34,7 +34,7 @@
         var upkeyPressed = false;
         var rightKeyPressed = false;
         var downKeyPressed = false;
-        
+
         var eXpos = 0;
         var eYpos = 0;
         const E_SIZE = 50;
@@ -42,25 +42,25 @@
         var eYspeed = 5;
 
         var startingPos = true;
-        
+
 
         function mainloop() {
             colorRect(0, 0, canvas.width, canvas.height, 'black');
-            
-            if(startingPos){
-               startPos();
+
+            if (startingPos) {
+                startPos();
                 startingPos = false;
             }
-            
+
             colorRect(pXpos, pYpos, P_SIZE, P_SIZE, 'blue'); // player 
             colorRect(eXpos, eYpos, E_SIZE, E_SIZE, 'red'); // enemy 
-           
-            
-            
+
+
+
             playerMove();
         }
-        
-        function startPos(){
+
+        function startPos() {
             pXpos = canvas.width / 2 - P_SIZE / 2;
             pYpos = canvas.height - P_SIZE;
         }
@@ -115,13 +115,13 @@
         }
 
         function playerMove() {
-            if (leftKeyPressed) {
+            if (leftKeyPressed && pXpos > 0) {
                 pXpos -= pXspeed;
             }
             if (upkeyPressed) {
                 pYpos -= pYspeed;
             }
-            if (rightKeyPressed) {
+            if (rightKeyPressed && pXpos < canvas.width - P_SIZE) {
                 pXpos += pXspeed;
             }
             if (downKeyPressed) {
